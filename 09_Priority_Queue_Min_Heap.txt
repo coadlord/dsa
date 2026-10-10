@@ -1,0 +1,31 @@
+TITLE: 9. MIN HEAP INSERTION AND DELETION
+AIM: Create a min heap and delete its minimum element.
+
+ALGORITHM:
+1. Start.
+2. Import the heapq module.
+3. Create an empty heap.
+4. Insert 30, 10, 20, and 5 one by one using heappush.
+5. Display the heap.
+6. Remove the smallest element using heappop.
+7. Display the deleted value and the updated heap.
+8. Stop.
+
+PROGRAM:
+import heapq
+
+heap = []
+for value in [30, 10, 20, 5]:
+    heapq.heappush(heap, value)
+
+print("Min Heap:", *heap)
+minimum = heapq.heappop(heap)
+print("Deleted Minimum =", minimum)
+print("Heap after Deletion:", *heap)
+
+OUTPUT:
+Min Heap: 5 10 20 30
+Deleted Minimum = 5
+Heap after Deletion: 10 30 20
+
+RESULT: A min heap was created and its minimum element was deleted successfully.

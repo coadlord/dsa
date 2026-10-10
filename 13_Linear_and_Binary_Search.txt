@@ -1,0 +1,55 @@
+TITLE: 13. LINEAR SEARCH AND BINARY SEARCH
+AIM: Search for a key using linear search and binary search.
+
+ALGORITHM:
+1. Start.
+2. Store the sorted list 10, 20, 30, 40, and 50.
+3. Set the key to 30.
+4. For linear search, compare the key with each list item from the beginning.
+5. If a match is found, record its one-based position.
+6. For binary search, set low to the first index and high to the last index.
+7. Find the middle index and compare its value with the key.
+8. If equal, record the position and stop.
+9. If the middle value is smaller, search the right half; otherwise search the left half.
+10. Display both search positions or not-found messages.
+11. Stop.
+
+PROGRAM:
+values = [10, 20, 30, 40, 50]
+key = 30
+linear_position = -1
+
+for i in range(len(values)):
+    if values[i] == key:
+        linear_position = i + 1
+        break
+
+if linear_position != -1:
+    print("Linear Search Position =", linear_position)
+else:
+    print("Linear Search: Not Found")
+
+low = 0
+high = len(values) - 1
+binary_position = -1
+
+while low <= high:
+    mid = (low + high) // 2
+    if values[mid] == key:
+        binary_position = mid + 1
+        break
+    elif values[mid] < key:
+        low = mid + 1
+    else:
+        high = mid - 1
+
+if binary_position != -1:
+    print("Binary Search Position =", binary_position)
+else:
+    print("Binary Search: Not Found")
+
+OUTPUT:
+Linear Search Position = 3
+Binary Search Position = 3
+
+RESULT: Linear and binary searches were performed successfully.

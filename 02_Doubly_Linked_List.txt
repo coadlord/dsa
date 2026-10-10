@@ -1,0 +1,94 @@
+TITLE: 2. DOUBLY LINKED LIST
+AIM: Create a doubly linked list, insert and delete a node, and display it in both directions.
+
+ALGORITHM:
+1. Start.
+2. Define a Node class with data, prev, and next fields.
+3. Create nodes containing 10, 20, and 30.
+4. Connect the nodes using both next and prev links.
+5. Define a display function to print the list from head to tail.
+6. Define insertion to create a new node and connect it after the last node.
+7. Define deletion to search for the given value.
+8. If the node has a previous node, connect that node to the next node; otherwise, update head.
+9. If the node has a next node, update its prev link.
+10. Display the list before insertion, after insertion, after deletion, and backward.
+11. Stop.
+
+PROGRAM:
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.prev = None
+        self.next = None
+
+head = Node(10)
+second = Node(20)
+third = Node(30)
+head.next = second
+second.prev = head
+second.next = third
+third.prev = second
+
+def display():
+    temp = head
+    while temp:
+        print(temp.data, end=" ")
+        temp = temp.next
+    print()
+
+def insert(value):
+    global head
+    new = Node(value)
+    if head is None:
+        head = new
+    else:
+        temp = head
+        while temp.next:
+            temp = temp.next
+        temp.next = new
+        new.prev = temp
+
+def delete(value):
+    global head
+    temp = head
+    while temp and temp.data != value:
+        temp = temp.next
+    if temp is None:
+        return
+    if temp.prev:
+        temp.prev.next = temp.next
+    else:
+        head = temp.next
+    if temp.next:
+        temp.next.prev = temp.prev
+
+print("Original List:")
+display()
+insert(40)
+print("After Insertion:")
+display()
+delete(20)
+print("After Deletion:")
+display()
+
+print("Backward:")
+temp = head
+if temp:
+    while temp.next:
+        temp = temp.next
+while temp:
+    print(temp.data, end=" ")
+    temp = temp.prev
+print()
+
+OUTPUT:
+Original List:
+10 20 30
+After Insertion:
+10 20 30 40
+After Deletion:
+10 30 40
+Backward:
+40 30 10
+
+RESULT: Insertion, deletion, and forward and backward traversal in a doubly linked list were performed successfully.

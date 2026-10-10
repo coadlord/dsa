@@ -1,0 +1,40 @@
+TITLE: 6. BALANCED PARENTHESES USING STACK
+AIM: Check whether parentheses in an expression are balanced.
+
+ALGORITHM:
+1. Start.
+2. Store the expression (a+b) and create an empty stack.
+3. Read each character from left to right.
+4. If the character is an opening parenthesis, push it onto the stack.
+5. If it is a closing parenthesis and the stack is empty, mark the expression as unbalanced and stop scanning.
+6. Otherwise, pop one opening parenthesis.
+7. After scanning, if the stack is not empty, mark the expression as unbalanced.
+8. Display whether the expression is balanced.
+9. Stop.
+
+PROGRAM:
+expression = "(a+b)"
+stack = []
+balanced = True
+
+for ch in expression:
+    if ch == "(":
+        stack.append(ch)
+    elif ch == ")":
+        if not stack:
+            balanced = False
+            break
+        stack.pop()
+
+if stack:
+    balanced = False
+
+if balanced:
+    print(expression, "is Balanced")
+else:
+    print(expression, "is Not Balanced")
+
+OUTPUT:
+(a+b) is Balanced
+
+RESULT: The parentheses were checked successfully.

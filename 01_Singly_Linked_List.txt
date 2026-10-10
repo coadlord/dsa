@@ -1,0 +1,75 @@
+TITLE: 1. SINGLY LINKED LIST
+AIM: Create a singly linked list, insert a node at the end, delete a node by value, and display the list.
+
+ALGORITHM:
+1. Start.
+2. Define a Node class with data and next fields.
+3. Create nodes containing 10, 20, and 30 and link them together.
+4. Define a display function to visit and print every node from head to the end.
+5. Define an insertion function that creates a new node.
+6. If the list is empty, make the new node the head; otherwise, move to the last node and link the new node.
+7. Define a deletion function that searches for the given value.
+8. If the value is in the head node, move head to the next node.
+9. Otherwise, find the node before the required node and bypass the required node.
+10. Display the original list, the list after insertion, and the list after deletion.
+11. Stop.
+
+PROGRAM:
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+head = Node(10)
+head.next = Node(20)
+head.next.next = Node(30)
+
+def display():
+    temp = head
+    while temp:
+        print(temp.data, end=" ")
+        temp = temp.next
+    print()
+
+def insert(value):
+    global head
+    new = Node(value)
+    if head is None:
+        head = new
+    else:
+        temp = head
+        while temp.next:
+            temp = temp.next
+        temp.next = new
+
+def delete(value):
+    global head
+    if head is None:
+        return
+    if head.data == value:
+        head = head.next
+        return
+    temp = head
+    while temp.next and temp.next.data != value:
+        temp = temp.next
+    if temp.next:
+        temp.next = temp.next.next
+
+print("Original List:")
+display()
+insert(40)
+print("After Insertion:")
+display()
+delete(20)
+print("After Deletion:")
+display()
+
+OUTPUT:
+Original List:
+10 20 30
+After Insertion:
+10 20 30 40
+After Deletion:
+10 30 40
+
+RESULT: Insertion and deletion in a singly linked list were performed successfully.

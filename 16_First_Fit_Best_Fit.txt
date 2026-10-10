@@ -1,0 +1,61 @@
+TITLE: 16. FIRST FIT AND BEST FIT MEMORY ALLOCATION
+AIM: Allocate memory blocks using First Fit and Best Fit methods.
+
+ALGORITHM:
+1. Start.
+2. Store memory block sizes 100, 500, 200, and 300.
+3. Store process sizes 212, 100, and 300.
+4. Copy the original blocks for First Fit.
+5. For each process, scan blocks from the beginning and select the first block with enough remaining space.
+6. Print the selected block and reduce its remaining size; if no block fits, print not allocated.
+7. Copy the original blocks again for Best Fit.
+8. For each process, find the smallest remaining block that can hold it.
+9. Print the selected block and reduce its remaining size; if no block fits, print not allocated.
+10. Display the results for both methods.
+11. Stop.
+
+PROGRAM:
+blocks = [100, 500, 200, 300]
+processes = [212, 100, 300]
+
+first_fit = blocks[:]
+print("First Fit:")
+
+for process in processes:
+    chosen = -1
+    for i in range(len(first_fit)):
+        if first_fit[i] >= process:
+            chosen = i
+            break
+    if chosen == -1:
+        print(process, "not allocated")
+    else:
+        print(process, "allocated to B" + str(chosen + 1))
+        first_fit[chosen] -= process
+
+best_fit = blocks[:]
+print("Best Fit:")
+
+for process in processes:
+    chosen = -1
+    for i in range(len(best_fit)):
+        if best_fit[i] >= process:
+            if chosen == -1 or best_fit[i] < best_fit[chosen]:
+                chosen = i
+    if chosen == -1:
+        print(process, "not allocated")
+    else:
+        print(process, "allocated to B" + str(chosen + 1))
+        best_fit[chosen] -= process
+
+OUTPUT:
+First Fit:
+212 allocated to B2
+100 allocated to B1
+300 allocated to B4
+Best Fit:
+212 allocated to B4
+100 allocated to B1
+300 allocated to B2
+
+RESULT: First Fit and Best Fit memory allocation were performed successfully.

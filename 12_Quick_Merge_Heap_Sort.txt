@@ -1,0 +1,64 @@
+TITLE: 12. QUICK SORT, MERGE SORT AND HEAP SORT
+AIM: Sort a list using quick sort, merge sort, and heap sort.
+
+ALGORITHM:
+1. Start.
+2. Import heapq for heap sort.
+3. For quick sort, choose the last element as pivot and separate values into smaller/equal and larger groups.
+4. Recursively sort both groups and combine them with the pivot.
+5. For merge sort, divide the list into halves until each part has one element.
+6. Merge the halves in ascending order.
+7. For heap sort, convert a copy of the list into a min heap.
+8. Repeatedly remove the smallest element to build the sorted list.
+9. Display the result of each sorting algorithm.
+10. Stop.
+
+PROGRAM:
+import heapq
+
+def quick_sort(a):
+    if len(a) <= 1:
+        return a
+    pivot = a[-1]
+    left = [x for x in a[:-1] if x <= pivot]
+    right = [x for x in a[:-1] if x > pivot]
+    return quick_sort(left) + [pivot] + quick_sort(right)
+
+def merge_sort(a):
+    if len(a) <= 1:
+        return a
+    mid = len(a) // 2
+    left = merge_sort(a[:mid])
+    right = merge_sort(a[mid:])
+    result = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
+
+def heap_sort(a):
+    heap = a[:]
+    heapq.heapify(heap)
+    result = []
+    while heap:
+        result.append(heapq.heappop(heap))
+    return result
+
+values = [40, 10, 50, 20, 30]
+print("Quick Sort:", *quick_sort(values))
+print("Merge Sort:", *merge_sort(values))
+print("Heap Sort:", *heap_sort(values))
+
+OUTPUT:
+Quick Sort: 10 20 30 40 50
+Merge Sort: 10 20 30 40 50
+Heap Sort: 10 20 30 40 50
+
+RESULT: Quick sort, merge sort, and heap sort sorted the list successfully.

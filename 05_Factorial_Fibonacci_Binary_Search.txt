@@ -1,0 +1,66 @@
+TITLE: 5. FACTORIAL, FIBONACCI AND BINARY SEARCH
+AIM: Calculate factorial, display Fibonacci numbers, and search a sorted list.
+
+ALGORITHM:
+1. Start.
+2. Define a recursive factorial function; return 1 when n is 0 or 1, otherwise return n multiplied by factorial(n-1).
+3. Calculate 5! using a loop and recursion.
+4. Define a recursive Fibonacci function; return n for n less than or equal to 1, otherwise return fib(n-1) + fib(n-2).
+5. Display the first five Fibonacci numbers.
+6. Store the sorted list 10, 20, 30, 40, 50 and set the search key to 30.
+7. Set low to the first index and high to the last index.
+8. Find the middle index and compare its value with the key.
+9. If equal, record the one-based position and stop; if smaller, search the right half, otherwise search the left half.
+10. Display all results.
+11. Stop.
+
+PROGRAM:
+def factorial(n):
+    if n <= 1:
+        return 1
+    return n * factorial(n - 1)
+
+def fib(n):
+    if n <= 1:
+        return n
+    return fib(n - 1) + fib(n - 2)
+
+fact = 1
+for i in range(1, 6):
+    fact *= i
+
+print("Factorial using loop =", fact)
+print("Factorial using recursion =", factorial(5))
+print("Fibonacci:", end=" ")
+for i in range(5):
+    print(fib(i), end=" ")
+print()
+
+a = [10, 20, 30, 40, 50]
+key = 30
+low = 0
+high = len(a) - 1
+position = -1
+
+while low <= high:
+    mid = (low + high) // 2
+    if a[mid] == key:
+        position = mid + 1
+        break
+    elif a[mid] < key:
+        low = mid + 1
+    else:
+        high = mid - 1
+
+if position != -1:
+    print("30 found at position", position)
+else:
+    print("30 not found")
+
+OUTPUT:
+Factorial using loop = 120
+Factorial using recursion = 120
+Fibonacci: 0 1 1 2 3
+30 found at position 3
+
+RESULT: Factorial, Fibonacci series, and binary search were performed successfully.

@@ -1,0 +1,33 @@
+TITLE: 15. CHARACTER FREQUENCY IN A STRING
+AIM: Count the frequency of every character in a string using a dictionary.
+
+ALGORITHM:
+1. Start.
+2. Store the string hello.
+3. Create an empty dictionary.
+4. Read each character in the string.
+5. If the character already exists in the dictionary, increase its count by one.
+6. Otherwise, add the character to the dictionary with count one.
+7. Display each character and its frequency in first-appearance order.
+8. Stop.
+
+PROGRAM:
+text = "hello"
+frequency = {}
+
+for ch in text:
+    if ch in frequency:
+        frequency[ch] += 1
+    else:
+        frequency[ch] = 1
+
+for ch, count in frequency.items():
+    print(ch, "=", count)
+
+OUTPUT:
+h = 1
+e = 1
+l = 2
+o = 1
+
+RESULT: The frequency of each character was counted successfully.
